@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>KSP Mission Control</title>
+    <link rel="icon" type="image/png" href="openmct/favicons/favicon-32x32.png" sizes="32x32" />
+    <script src="openmct/openmct.js"></script>
+    <script src="ksp-plugin.js"></script>
+    <script src="flight-dashboard.js"></script>
+  </head>
+  <body>
+    <script>
+      const MINUTE = 60 * 1000;
+
+      openmct.setAssetPath('openmct');
+      openmct.install(openmct.plugins.LocalStorage());
+      openmct.install(openmct.plugins.MyItems());
+      openmct.install(openmct.plugins.Espresso());
+      openmct.install(openmct.plugins.UTCTimeSystem());
+      openmct.install(
+        openmct.plugins.Conductor({
+          menuOptions: [
+            {
+              name: 'Realtime',
+              timeSystem: 'utc',
+              clock: 'local',
+              clockOffsets: { start: -10 * MINUTE, end: 15 * 1000 },
+              presets: [
+                { label: '1 Hour', bounds: { start: -60 * MINUTE, end: 15 * 1000 } },
+                { label: '30 Minutes', bounds: { start: -30 * MINUTE, end: 15 * 1000 } },
+                { label: '10 Minutes', bounds: { start: -10 * MINUTE, end: 15 * 1000 } },
+                { label: '5 Minutes', bounds: { start: -5 * MINUTE, end: 15 * 1000 } }
+              ]
+            },
+            {
+              name: 'Fixed',
+              timeSystem: 'utc',
+              bounds: { start: Date.now() - 30 * MINUTE, end: Date.now() }
+            }
+          ]
+        })
+      );
+      openmct.install(openmct.plugins.DisplayLayout({ showAsView: ['summary-widget'] }));
+      openmct.install(openmct.plugins.LADTable());
+      openmct.install(openmct.plugins.Notebook());
+      openmct.install(openmct.plugins.Clock({ enableClockIndicator: true }));
+      openmct.install(openmct.plugins.Timer());
+
+      openmct.install(KspPlugin());
+      openmct.install(FlightDashboardPlugin());
+
+      document.addEventListener('DOMContentLoaded', () => openmct.start());
+    </script>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+{
+  "name": "Active Vessel",
+  "groups": [
+    {
+      "key": "vessel",
+      "name": "Vessel",
+      "points": [
+        { "id": "vessel.name", "name": "Vessel Name", "format": "string" },
+        { "id": "vessel.body", "name": "Body", "format": "string" },
+        { "id": "vessel.situation", "name": "Situation", "format": "string" },
+        { "id": "control.stage", "name": "Current Stage", "format": "integer" },
+        { "id": "control.throttle", "name": "Throttle", "units": "%", "format": "float", "min": 0, "max": 100 }
+      ]
+    },
+    {
+      "key": "flight",
+      "name": "Flight",
+      "points": [
+        { "id": "flight.altitude", "name": "Altitude (ASL)", "units": "m", "format": "float", "formatString": "%0.0f" },
+        { "id": "flight.surfaceSpeed", "name": "Surface Speed", "units": "m/s", "format": "float" },
+        { "id": "flight.verticalSpeed", "name": "Vertical Speed", "units": "m/s", "format": "float" },
+        { "id": "flight.orbitalSpeed", "name": "Orbital Speed", "units": "m/s", "format": "float" },
+        {
+          "id": "flight.gForce", "name": "G-Force", "units": "g", "format": "float", "min": 0, "max": 8,
+          "limits": { "warning": { "high": 4 }, "critical": { "high": 6 } }
+        },
+        {
+          "id": "flight.dynamicPressure", "name": "Dynamic Pressure", "units": "kPa", "format": "float",
+          "limits": { "warning": { "high": 15 }, "critical": { "high": 25 } }
+        },
+        { "id": "flight.latitude", "name": "Latitude", "units": "deg", "format": "float", "formatString": "%0.4f" },
+        { "id": "flight.longitude", "name": "Longitude", "units": "deg", "format": "float", "formatString": "%0.4f" }
+      ]
+    },
+    {
+      "key": "attitude",
+      "name": "Attitude",
+      "points": [
+        { "id": "attitude.pitch", "name": "Pitch", "units": "deg", "format": "float", "min": -90, "max": 90 },
+        { "id": "attitude.heading", "name": "Heading", "units": "deg", "format": "float", "min": 0, "max": 360 },
+        { "id": "attitude.roll", "name": "Roll", "units": "deg", "format": "float", "min": -180, "max": 180 }
+      ]
+    },
+    {
+      "key": "orbit",
+      "name": "Orbit",
+      "points": [
+        { "id": "orbit.apoapsis", "name": "Apoapsis", "units": "m", "format": "float", "formatString": "%0.0f" },
+        { "id": "orbit.periapsis", "name": "Periapsis", "units": "m", "format": "float", "formatString": "%0.0f" },
+        { "id": "orbit.timeToApoapsis", "name": "Time to Apoapsis", "units": "s", "format": "float" },
+        { "id": "orbit.timeToPeriapsis", "name": "Time to Periapsis", "units": "s", "format": "float" },
+        { "id": "orbit.inclination", "name": "Inclination", "units": "deg", "format": "float" },
+        { "id": "orbit.eccentricity", "name": "Eccentricity", "format": "float", "formatString": "%0.4f" },
+        { "id": "orbit.period", "name": "Orbital Period", "units": "s", "format": "float", "formatString": "%0.0f" }
+      ]
+    },
+    {
+      "key": "resources",
+      "name": "Resources",
+      "points": [
+        { "id": "resources.liquidFuel", "name": "Liquid Fuel", "units": "u", "format": "float" },
+        { "id": "resources.oxidizer", "name": "Oxidizer", "units": "u", "format": "float" },
+        {
+          "id": "resources.electricCharge", "name": "Electric Charge", "units": "u", "format": "float",
+          "limits": { "warning": { "low": 30 }, "critical": { "low": 10 } }
+        }
+      ]
+    },
+    {
+      "key": "time",
+      "name": "Time",
+      "points": [
+        { "id": "time.ut", "name": "Universal Time", "units": "s", "format": "float", "formatString": "%0.1f" },
+        { "id": "time.met", "name": "Mission Elapsed Time", "units": "s", "format": "float", "formatString": "%0.1f" }
+      ]
+    },
+    {
+      "key": "bridge",
+      "name": "Bridge",
+      "points": [
+        { "id": "bridge.source", "name": "Data Source", "format": "string" },
+        { "id": "bridge.link", "name": "Link Status", "format": "string" }
+      ]
+    }
+  ]
+}

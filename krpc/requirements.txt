@@ -1,0 +1,2 @@
+# Use the client version that matches the kRPC mod installed in KSP, e.g. krpc==0.5.4
+krpc
